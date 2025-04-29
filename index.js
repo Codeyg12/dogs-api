@@ -53,4 +53,13 @@ app.get('/dogs', async (req, res, next) => {
   }
 });
 
+app.get('/dogs/:id', async (req, res, next) => {
+  try {
+    const dog = await Dog.findByPk(req.params.id);
+    res.send(dog);
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = app;

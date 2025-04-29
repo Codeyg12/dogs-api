@@ -34,6 +34,19 @@ describe('Endpoints', () => {
         });
     });
 
+    describe('GET /dogs/:id', () => {
+        it('should return dog with correct data', async () => {
+            // make a request
+            const response = await request(app).get('/dogs/1');
+            // assert a response code
+            expect(response.status).toBe(200);
+            // expect a response
+            expect(response.body).toBeDefined();
+            // toEqual checks deep equality in objects
+            expect(response.body).toEqual(expect.objectContaining(dogs[0]));
+        });
+    });
+
     describe('POST /dogs', () => {
         it('Should post a new dog to the list', async () => {
             const body = {
